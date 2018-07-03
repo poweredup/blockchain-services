@@ -1,6 +1,6 @@
-# TokenPlay Integration Service
+# TokenPlay Blockchain Services
 
-TokenPlay integration service that provides connectivity to the Ethereum Network and APIs for the TokenPlay front end application
+TokenPlay Blockchain service that provides connectivity to the Ethereum Network and APIs for the TokenPlay [frontend](https://github.com/blocplay/frontend) application.
 
 ## Installation
 
