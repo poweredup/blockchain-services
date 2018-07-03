@@ -4,6 +4,8 @@ TokenPlay Blockchain service that provides connectivity to the Ethereum Network 
 
 We are one of the first videogame companies to demonstrate tokenization games and game assets via [smart contracts](https://github.com/blocplay/blockchain-services/tree/master/truffle/contracts).
 
+All source code is released as is under the Apache v2 licensing.
+
 ## Installation
 
 Prerequisites:
