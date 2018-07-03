@@ -1,0 +1,15 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
+  "rules": {
+    "key-spacing": 0,
+    "semi": ["error", "always", { "omitLastInOneLineBlock": true }],
+    "space-before-function-paren": 0,
+    "no-unused-vars": 0,
+    "no-undef": 0,
+    "jsx-quotes": 0,
+    "max-len": [2, 250, 2],
+    "object-curly-spacing": [2, "always"]
+  }
+}
