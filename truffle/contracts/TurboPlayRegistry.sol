@@ -1,10 +1,10 @@
 pragma solidity ^0.4.21;
 
 import "./ownership/Ownable.sol";
-import "./TokenPlayStorageInterface.sol";
+import "./TurboPlayStorageInterface.sol";
 import "./math/SafeMath.sol";
 
-contract TokenPlayRegistry is Ownable {
+contract TurboPlayRegistry is Ownable {
 	using SafeMath for uint256;
 
 	address storageAddress = 0x190d7484303eF6aD07A3D5625054808c2345E987;

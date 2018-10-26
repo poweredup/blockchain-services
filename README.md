@@ -1,8 +1,8 @@
-# TokenPlay Blockchain Services
+# TurboPlay Blockchain Services
 
-TokenPlay Blockchain service that provides connectivity to the Ethereum Network and APIs for the TokenPlay [frontend](https://github.com/blocplay/frontend) application.
+TurboPlay Blockchain service that provides connectivity to the Ethereum Network and APIs for the TurboPlay [frontend](https://github.com/turbo-play/frontend) application.
 
-We are one of the first videogame companies to demonstrate tokenization games and game assets via [smart contracts](https://github.com/blocplay/blockchain-services/tree/master/truffle/contracts).
+We are one of the first videogame companies to demonstrate tokenization games and game assets via [smart contracts](https://github.com/turbo-play/blockchain-services/tree/master/truffle/contracts).
 
 All source code is released as is under the Apache v2 licensing.
 
@@ -81,7 +81,7 @@ To fix some errors automatically:
 
 ## Staging URL
 
-The api is currently staged on the Ropsten Network at https://tokenplay-staging.herokuapp.com/
+The api is currently staged on the Ropsten Network at https://turboplay-staging.herokuapp.com/
 
 ## API Reference
 
@@ -145,7 +145,7 @@ This will also generate a private Ethereum wallet which is accessible using the 
       "params": {
         "username": "UserMcUser",
         "email": "UserMcUser@user.com",
-        "password": "TokenPlay123"
+        "password": "TurboPlay123"
       },
       "id": 1
     }
@@ -177,7 +177,7 @@ This method returns a JSON Web Token representing the user session for use in al
       "method": "login",
       "params": {
         "username": "UserMcUser",
-        "password": "TokenPlay123"
+        "password": "TurboPlay123"
       },
       "id": 1
     }
@@ -460,25 +460,25 @@ This method returns a paginated list of registered games.
                },
                "images":{
                   "teaser":{
-                     "url":"https://tokenplay.s3.amazonaws.com/media/8/teaser.png"
+                     "url":"https://turboplay.s3.amazonaws.com/media/8/teaser.png"
                   },
                   "cover":{
-                     "url":"https://tokenplay.s3.amazonaws.com/media/8/cover.png"
+                     "url":"https://turboplay.s3.amazonaws.com/media/8/cover.png"
                   }
                },
                "medias":[
                   {
                      "id":1,
                      "type":"video",
-                     "previewUrl":"https://tokenplay.s3.amazonaws.com/media/8/preview.png",
+                     "previewUrl":"https://turboplay.s3.amazonaws.com/media/8/preview.png",
                      "title":"Tuebor: I Will Defend",
-                     "src":"https://tokenplay.s3.amazonaws.com/media/8/1.mp4"
+                     "src":"https://turboplay.s3.amazonaws.com/media/8/1.mp4"
                   }
                ],
                "price":"41942197307911780",
                "package":{
                   "id":"tue",
-                  "defaultDest":"C:\\Tokenplay\\games\\tue",
+                  "defaultDest":"C:\\turboplay\\games\\tue",
                   "installSize":0,
                   "downloaded":false
                },
@@ -570,25 +570,25 @@ This method returns a paginated list of registered games.
                },
                "images":{
                   "teaser":{
-                     "url":"https://tokenplay.s3.amazonaws.com/media/9/teaser.png"
+                     "url":"https://turboplay.s3.amazonaws.com/media/9/teaser.png"
                   },
                   "cover":{
-                     "url":"https://tokenplay.s3.amazonaws.com/media/9/cover.png"
+                     "url":"https://turboplay.s3.amazonaws.com/media/9/cover.png"
                   }
                },
                "medias":[
                   {
                      "id":1,
                      "type":"video",
-                     "previewUrl":"https://tokenplay.s3.amazonaws.com/media/9/preview.png",
+                     "previewUrl":"https://turboplay.s3.amazonaws.com/media/9/preview.png",
                      "title":"AVARIAvs",
-                     "src":"https://tokenplay.s3.amazonaws.com/media/9/1.mp4"
+                     "src":"https://turboplay.s3.amazonaws.com/media/9/1.mp4"
                   }
                ],
                "price":"41942197307911780",
                "package":{
                   "id":"ava",
-                  "defaultDest":"C:\\Tokenplay\\games\\ava",
+                  "defaultDest":"C:\\turboplay\\games\\ava",
                   "installSize":2255855616,
                   "downloaded":false
                },
@@ -744,25 +744,25 @@ The game Id must be an unsigned integer.
           ],
           "images": {
             "teaser": {
-              "url": "https://tokenplay.s3.amazonaws.com/media/18/teaser.png"
+              "url": "https://turboplay.s3.amazonaws.com/media/18/teaser.png"
             },
             "cover": {
-              "url": "https://tokenplay.s3.amazonaws.com/media/18/cover.png"
+              "url": "https://turboplay.s3.amazonaws.com/media/18/cover.png"
             }
           },
           "medias": [
             {
               "id": 1,
               "type": "video",
-              "previewUrl": "https://tokenplay.s3.amazonaws.com/media/18/preview.png",
+              "previewUrl": "https://turboplay.s3.amazonaws.com/media/18/preview.png",
               "title": "Outbreak: Pandemic Evolution",
-              "src": "https://tokenplay.s3.amazonaws.com/media/18/1.mp4"
+              "src": "https://turboplay.s3.amazonaws.com/media/18/1.mp4"
             }
           ],
           "price": 0.0483,
           "package": {
             "id": "out",
-            "defaultDest": "C:\\Tokenplay\\games\\out",
+            "defaultDest": "C:\\turboplay\\games\\out",
             "installSize": 6751690752,
             "downloaded": false
           },
@@ -900,25 +900,25 @@ This method returns a list of token owned by the user linked to the supplied jwt
               },
               "images": {
                 "teaser": {
-                  "url":    "https://tokenplay.s3.amazonaws.com/media/7/te  aser.png"
+                  "url":    "https://turboplay.s3.amazonaws.com/media/7/te  aser.png"
                 },
                 "cover": {
-                  "url":    "https://tokenplay.s3.amazonaws.com/media/7/co  ver.png"
+                  "url":    "https://turboplay.s3.amazonaws.com/media/7/co  ver.png"
                 }
               },
               "medias": [
                 {
                   "id": 1,
                   "type": "video",
-                  "previewUrl":     "https://tokenplay.s3.amazonaws.com/media/7/pr    eview.png",
+                  "previewUrl":     "https://turboplay.s3.amazonaws.com/media/7/pr    eview.png",
                   "title": "Heavy Gear Assault",
-                  "src":    "https://tokenplay.s3.amazonaws.com/media/7/1.  mp4"
+                  "src":    "https://turboplay.s3.amazonaws.com/media/7/1.  mp4"
                 }
               ],
               "price": "18800000000000000",
               "package": {
                 "id": "hga",
-                "defaultDest": "C:\\Tokenplay\\games\\hga",
+                "defaultDest": "C:\\turboplay\\games\\hga",
                 "installSize": 4001599488,
                 "downloaded": false
               },

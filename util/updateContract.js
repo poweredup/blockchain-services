@@ -19,11 +19,11 @@ exports = module.exports = function(app) {
       .then(() => {
         console.log('Payment address in eternal updated');
         addresses.paymentAddress = paymentAddress;
-        app.tokenPlayPayment.methods
+        app.turboPlayPayment.methods
           .setStorageAddress(storageAddress)
           .send({ from: app.wallet.addresses[0], gas: config.gasLimit })
           .then(() => {
-            console.log('Storage address in tokenplay updated');
+            console.log('Storage address in turboplay updated');
             addresses.storageAddress = storageAddress;
             if (addresses.save) {
               addresses.save().then((res) => {

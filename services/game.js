@@ -47,7 +47,7 @@ exports.register = function(jwt, gameObj, callback, app) {
         from: app.wallet.addresses[0],
         to: config.paymentContractAddress,
         gas: config.gasLimit,
-        data: app.tokenPlayPayment.methods.addGameWithPrice(user.account.walletId, gameId, gameObj.price.toString()).encodeABI()
+        data: app.turboPlayPayment.methods.addGameWithPrice(user.account.walletId, gameId, gameObj.price.toString()).encodeABI()
       };
 
       app.utility.txQueue
@@ -106,7 +106,7 @@ exports.get = function(page, limit, callback, app) {
 exports.buy = function(jwt, gameId, callback, app) {
   const workflow = app.utility.workflow(callback, app);
 
-  let tokenPlayPaymentWs;
+  let turboPlayPaymentWs;
   let userId;
   try {
     userId = app.utility.jwt.getIdFromToken(jwt);
@@ -168,13 +168,13 @@ exports.buy = function(jwt, gameId, callback, app) {
   });
 
   workflow.on('submitGameOrder', (game, wallet, pendingToken) => {
-    tokenPlayPaymentWs = app.utility.websocket.createPaymentWs();
+    turboPlayPaymentWs = app.utility.websocket.createPaymentWs();
     const tx = {
       from: wallet.walletId,
       to: config.paymentContractAddress,
       gas: config.gasLimit,
       value: game.price,
-      data: app.tokenPlayPayment.methods.orderGameCopy(gameId).encodeABI()
+      data: app.turboPlayPayment.methods.orderGameCopy(gameId).encodeABI()
     };
     console.log('Submitting game order ', tx);
     workflow.emit('response', { message: 'Game order processing.' });
@@ -189,7 +189,7 @@ exports.buy = function(jwt, gameId, callback, app) {
         });
     });
 
-    tokenPlayPaymentWs.events.GameCopyOrdered((err, event) => {
+    turboPlayPaymentWs.events.GameCopyOrdered((err, event) => {
       if (err) {
         workflow.emit('logError', userId, 'Exception listening to GameCopyOrdered event', err);
       }
@@ -268,7 +268,7 @@ exports.acceptGameOrder = function(jwt, orderId, callback, app) {
 
 const acceptGameOrder = function(userId, orderId, pendingToken, app) {
   const workflow = app.utility.workflow(() => {}, app);
-  let tokenPlayPaymentWs = app.utility.websocket.createPaymentWs();
+  let turboPlayPaymentWs = app.utility.websocket.createPaymentWs();
 
   console.log('accepting order!', orderId);
   workflow.on('acceptGameOrder', (orderId, pendingToken) => {
@@ -276,12 +276,12 @@ const acceptGameOrder = function(userId, orderId, pendingToken, app) {
       from: app.wallet.addresses[0],
       to: config.paymentContractAddress,
       gas: config.gasLimit,
-      data: app.tokenPlayPayment.methods.acceptGameOrder(orderId).encodeABI()
+      data: app.turboPlayPayment.methods.acceptGameOrder(orderId).encodeABI()
     };
     console.log('Accepting game order ', tx);
     const acceptPromise = app.utility.txQueue.push(app.wallet.addresses[0], tx);
 
-    tokenPlayPaymentWs.events.GameOrderAccepted((err, event) => {
+    turboPlayPaymentWs.events.GameOrderAccepted((err, event) => {
       if (err) {
         pendingToken.status = 'failed';
         pendingToken.save();
@@ -355,7 +355,7 @@ exports.setPrice = function(jwt, gameId, price, callback, app) {
       from: app.wallet.addresses[0],
       to: config.paymentContractAddress,
       gas: config.gasLimit,
-      data: app.tokenPlayPayment.methods.setPrice(gameId, price).encodeABI()
+      data: app.turboPlayPayment.methods.setPrice(gameId, price).encodeABI()
     };
     const pricePromise = app.utility.txQueue.push(app.wallet.addresses[0], tx);
     workflow.emit('response', 'updating price');
@@ -409,7 +409,7 @@ exports.verifyGameOwner = function(username, tokenId, callback, app) {
   });
 
   workflow.on('checkOwnership', address => {
-    app.tokenPlayPayment.methods
+    app.turboPlayPayment.methods
       .ownerOf(tokenId)
       .call()
       .then(res => {
@@ -431,7 +431,7 @@ exports.getOrder = (jwt, orderId, callback, app) => {
   } catch (err) {
     return workflow.emit('exception', 'token expired or invalid');
   }
-  app.tokenPlayPayment.methods
+  app.turboPlayPayment.methods
     .getGameOrder(orderId)
     .call()
     .then(order => {

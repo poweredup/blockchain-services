@@ -1,8 +1,8 @@
 pragma solidity ^0.4.21;
 
-import "./TokenPlayRegistry.sol";
+import "./TurboPlayRegistry.sol";
 
-contract TokenPlayPayment is TokenPlayRegistry {
+contract TurboPlayPayment is TurboPlayRegistry {
   event PriceSet(uint256 indexed gamesId, uint256 indexed value);
   event GameCopyOrdered(address indexed buyer, uint256 indexed pendingOrderId, uint256 indexed gamesId, uint256 value);
   event GameOrderAccepted(address indexed buyer, uint256 indexed gamesId, uint256 indexed tokenId);

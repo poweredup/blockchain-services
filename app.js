@@ -24,8 +24,8 @@ require('./models')(app.db, mongoose);
 
 app.wallet = new HDWalletProvider(config.mnemonic, config.web3Provider);
 app.web3 = new Web3(app.wallet);
-app.tokenPlayPayment = new app.web3.eth.Contract(
-  require('./truffle/build/contracts/TokenPlayPayment.json').abi,
+app.turboPlayPayment = new app.web3.eth.Contract(
+  require('./truffle/build/contracts/TurboPlayPayment.json').abi,
   config.paymentContractAddress
 );
 app.utility.txQueue = require('./util/transactionQueue')(app.web3);

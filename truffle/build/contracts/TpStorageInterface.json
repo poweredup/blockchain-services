@@ -448,9 +448,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.19;\n\ncontract TpStorageInterface {\n  function getTokenIdCounter() external view returns (uint);\n  function getOrderCounter() external view returns (uint);\n  function setCurrentTpAddress(address _newAddress) external;\n  function setGamesIdToGamePrice(uint _gamesId, uint _gamePrice) external;\n  function getGamesIdToGamePrice(uint _gamesId) external view returns (uint);\n  function getPendingOrders(uint _orderIndex) external view returns (address buyer, uint gamesId);\n  function setPendingOrder(address _buyer, uint _gamesId) external;\n  function setOwnerToGamesIds(address _owner, uint _index, uint _gamesId) external;\n  function getOwnerToGamesIds(address _owner) external view returns (uint[]);\n  function pushOwnerToGamesIds(address _owner, uint _gamesId) external;\n  function getGamesIdIndex(uint _gamesId) external view returns (uint);\n  function setGamesIdIndex(uint _gamesId, uint _index) external;\n  function getGamesIdToOwnerAddress(uint _gamesId) external view returns (address);\n  function setGamesIdToOwnerAddress(uint _gamesId, address _gameOwner) external;\n  function getGamesIdToTokensId(uint _gamesId) external view returns (uint[]);\n  function pushGamesIdToTokensId(uint _gamesId, uint _tokensId) external;\n  function setGamesIdToTokensId(uint _gamesId, uint _index, uint _tokensId) external;\n  function getTokensIdToTokensIdIndex(uint _tokensId) external view returns (uint);\n  function setTokensIdToTokensIdIndex(uint _tokensId, uint _index) external;\n  function getTokensIdToGamesId(uint _tokensId) external view returns (uint);\n  function setTokensIdToGamesId(uint _tokensId, uint _gamesId) external;\n  function saveGameOrder(uint _orderId, uint _tokensId) external;\n  function saveBurnGame(uint _gamesId, uint _tokensId) external;\n  function ownerOf(uint _tokensId) external view returns (address);\n}",
-  "sourcePath": "/Users/garmore/Clients/tokenplay/tokenplay-service/truffle/contracts/TokenPlayStorageInterface.sol",
+  "sourcePath": "/Users/garmore/Clients/turboplay/turboplay-service/truffle/contracts/TurboPlayStorageInterface.sol",
   "ast": {
-    "absolutePath": "/Users/garmore/Clients/tokenplay/tokenplay-service/truffle/contracts/TokenPlayStorageInterface.sol",
+    "absolutePath": "/Users/garmore/Clients/turboplay/turboplay-service/truffle/contracts/TurboPlayStorageInterface.sol",
     "exportedSymbols": {
       "TpStorageInterface": [
         882
@@ -2488,7 +2488,7 @@
     "src": "0:1845:2"
   },
   "legacyAST": {
-    "absolutePath": "/Users/garmore/Clients/tokenplay/tokenplay-service/truffle/contracts/TokenPlayStorageInterface.sol",
+    "absolutePath": "/Users/garmore/Clients/turboplay/turboplay-service/truffle/contracts/TurboPlayStorageInterface.sol",
     "exportedSymbols": {
       "TpStorageInterface": [
         882

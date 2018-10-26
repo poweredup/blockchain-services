@@ -1,4 +1,4 @@
-let TokenPlayPayment = artifacts.require('TokenPlayPayment');
+let TurboPlayPayment = artifacts.require('TurboPlayPayment');
 
 const BigNumber = web3.BigNumber;
 
@@ -7,14 +7,14 @@ require('chai')
   .use(require('chai-bignumber')(BigNumber))
   .should();
 
-contract('Test TokenPlayRegistry:', function(accounts) {
+contract('Test TurboPlayRegistry:', function(accounts) {
   const creator = accounts[0];
   const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
   const sampleGameIDs = [100, 200, 300, 400, 500, 600, 700, 800, 900];
   const sampleTokenIDs = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000];
 
   beforeEach(async function() {
-    this.instance = await TokenPlayPayment.new({ from: creator });
+    this.instance = await TurboPlayPayment.new({ from: creator });
   });
 
   describe('Registry', async function() {

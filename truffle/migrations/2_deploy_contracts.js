@@ -1,7 +1,7 @@
-let TokenPlayPayment = artifacts.require("./TokenPlayPayment.sol");
+let TurboPlayPayment = artifacts.require("./TurboPlayPayment.sol");
 let EternalStorage = artifacts.require("./EternalStorage.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(TokenPlayPayment);
+  deployer.deploy(TurboPlayPayment);
   deployer.deploy(EternalStorage, { overwrite: false });
 };

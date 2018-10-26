@@ -3,7 +3,7 @@ pragma solidity ^0.4.21;
 import "./token/ERC721/ERC721Token.sol";
 import "./ownership/Ownable.sol";
 
-contract EternalStorage is Ownable, ERC721Token("TokenPlayRegistry", "TPR") {
+contract EternalStorage is Ownable, ERC721Token("TurboPlayRegistry", "TPR") {
 
   address currentTpAddress;
 

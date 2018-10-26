@@ -1,5 +1,5 @@
-TokenPlay
-Copyright 2018 TokenPlay & Parent Company BlocPlay Entertainment.
+TurboPlay
+Copyright 2018 TurboPlay & Parent Company BlocPlay Entertainment.
 
 This product includes software developed at
-TokenPlay & BlocPlay Entertainment (http://www.tokenplay.com/).
+TurboPlay & BlocPlay Entertainment (http://www.turboplay.com/).

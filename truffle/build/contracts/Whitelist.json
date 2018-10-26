@@ -171,9 +171,9 @@
   "sourceMap": "260:2101:6:-;;;496:5:5;:18;;-1:-1:-1;;;;;;496:18:5;504:10;496:18;;;260:2101:6;;;;;;",
   "deployedSourceMap": "260:2101:6:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2122:236;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;2122:236:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;2122:236:6;;-1:-1:-1;2122:236:6;;-1:-1:-1;;;;;;;2122:236:6;;;;;;;;;;;;;;;;;;;1662:224;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;1662:224:6;-1:-1:-1;;;;;1662:224:6;;;;;784:217;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;784:217:6;-1:-1:-1;;;;;784:217:6;;;;;238:20:5;;8:9:-1;5:2;;;30:1;27;20:12;5:2;238:20:5;;;;;;;;-1:-1:-1;;;;;238:20:5;;;;;;;;;;;;;;294:41:6;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;294:41:6;-1:-1:-1;;;;;294:41:6;;;;;1214:226;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;1214:226:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1214:226:6;;-1:-1:-1;1214:226:6;;-1:-1:-1;;;;;;;1214:226:6;827:174:5;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;827:174:5;-1:-1:-1;;;;;827:174:5;;;;;;;2122:236:6;2202:12;648:5:5;;2202:12:6;;-1:-1:-1;;;;;648:5:5;634:10;:19;626:28;;;;;;-1:-1:-1;2239:1:6;2222:132;2246:5;:12;2242:1;:16;2222:132;;;2277:36;2304:5;2310:1;2304:8;;;;;;;;;;;;;;;;;;2277:26;:36::i;:::-;2273:75;;;2335:4;2325:14;;2273:75;2260:3;;2222:132;;;2122:236;;;;:::o;1662:224::-;1737:12;648:5:5;;-1:-1:-1;;;;;648:5:5;634:10;:19;626:28;;;;;;-1:-1:-1;;;;;1761:15:6;;;;;;:9;:15;;;;;;;;1757:125;;;-1:-1:-1;;;;;1786:15:6;;1804:5;1786:15;;;:9;:15;;;;;;;;;:23;;-1:-1:-1;;1786:23:6;;;1822:31;;;;;;;;;;;;;;;;;-1:-1:-1;1871:4:6;1757:125;1662:224;;;:::o;784:217::-;854:12;648:5:5;;-1:-1:-1;;;;;648:5:5;634:10;:19;626:28;;;;;;-1:-1:-1;;;;;879:15:6;;;;;;:9;:15;;;;;;;;878:16;874:123;;;-1:-1:-1;;;;;904:15:6;;;;;;922:4;904:15;;;;;;;;;:22;;-1:-1:-1;;904:22:6;;;;;;;939:29;;;;;;;;;;;;;;;;;-1:-1:-1;986:4:6;784:217;;;:::o;238:20:5:-;;;-1:-1:-1;;;;;238:20:5;;:::o;294:41:6:-;;;;;;;;;;;;;;;:::o;1214:226::-;1289:12;648:5:5;;1289:12:6;;-1:-1:-1;;;;;648:5:5;634:10;:19;626:28;;;;;;-1:-1:-1;1326:1:6;1309:127;1333:5;:12;1329:1;:16;1309:127;;;1364:31;1386:5;1392:1;1386:8;;;;;;;;;;;;;;;;;;1364:21;:31::i;:::-;1360:70;;;1417:4;1407:14;;1360:70;1347:3;;1309:127;;827:174:5;648:5;;-1:-1:-1;;;;;648:5:5;634:10;:19;626:28;;;;;;-1:-1:-1;;;;;903:22:5;;;;895:31;;;;;;958:5;;;937:37;;-1:-1:-1;;;;;937:37:5;;;;958:5;;;937:37;;;980:5;:16;;-1:-1:-1;;980:16:5;-1:-1:-1;;;;;980:16:5;;;;;;;;;;827:174::o",
   "source": "pragma solidity ^0.4.21;\n\n\nimport \"./Ownable.sol\";\n\n\n/**\n * @title Whitelist\n * @dev The Whitelist contract has a whitelist of addresses, and provides basic authorization control functions.\n * @dev This simplifies the implementation of \"user permissions\".\n */\ncontract Whitelist is Ownable {\n  mapping(address => bool) public whitelist;\n\n  event WhitelistedAddressAdded(address addr);\n  event WhitelistedAddressRemoved(address addr);\n\n  /**\n   * @dev Throws if called by any account that's not whitelisted.\n   */\n  modifier onlyWhitelisted() {\n    require(whitelist[msg.sender]);\n    _;\n  }\n\n  /**\n   * @dev add an address to the whitelist\n   * @param addr address\n   * @return true if the address was added to the whitelist, false if the address was already in the whitelist\n   */\n  function addAddressToWhitelist(address addr) onlyOwner public returns(bool success) {\n    if (!whitelist[addr]) {\n      whitelist[addr] = true;\n      emit WhitelistedAddressAdded(addr);\n      success = true;\n    }\n  }\n\n  /**\n   * @dev add addresses to the whitelist\n   * @param addrs addresses\n   * @return true if at least one address was added to the whitelist,\n   * false if all addresses were already in the whitelist\n   */\n  function addAddressesToWhitelist(address[] addrs) onlyOwner public returns(bool success) {\n    for (uint256 i = 0; i < addrs.length; i++) {\n      if (addAddressToWhitelist(addrs[i])) {\n        success = true;\n      }\n    }\n  }\n\n  /**\n   * @dev remove an address from the whitelist\n   * @param addr address\n   * @return true if the address was removed from the whitelist,\n   * false if the address wasn't in the whitelist in the first place\n   */\n  function removeAddressFromWhitelist(address addr) onlyOwner public returns(bool success) {\n    if (whitelist[addr]) {\n      whitelist[addr] = false;\n      emit WhitelistedAddressRemoved(addr);\n      success = true;\n    }\n  }\n\n  /**\n   * @dev remove addresses from the whitelist\n   * @param addrs addresses\n   * @return true if at least one address was removed from the whitelist,\n   * false if all addresses weren't in the whitelist in the first place\n   */\n  function removeAddressesFromWhitelist(address[] addrs) onlyOwner public returns(bool success) {\n    for (uint256 i = 0; i < addrs.length; i++) {\n      if (removeAddressFromWhitelist(addrs[i])) {\n        success = true;\n      }\n    }\n  }\n\n}\n",
-  "sourcePath": "/Users/garmore/Clients/tokenplay/tokenplay-service/truffle/contracts/ownership/Whitelist.sol",
+  "sourcePath": "/Users/garmore/Clients/turboplay/turboplay-service/truffle/contracts/ownership/Whitelist.sol",
   "ast": {
-    "absolutePath": "/Users/garmore/Clients/tokenplay/tokenplay-service/truffle/contracts/ownership/Whitelist.sol",
+    "absolutePath": "/Users/garmore/Clients/turboplay/turboplay-service/truffle/contracts/ownership/Whitelist.sol",
     "exportedSymbols": {
       "Whitelist": [
         1132
@@ -194,7 +194,7 @@
         "src": "0:24:6"
       },
       {
-        "absolutePath": "/Users/garmore/Clients/tokenplay/tokenplay-service/truffle/contracts/ownership/Ownable.sol",
+        "absolutePath": "/Users/garmore/Clients/turboplay/turboplay-service/truffle/contracts/ownership/Ownable.sol",
         "file": "./Ownable.sol",
         "id": 977,
         "nodeType": "ImportDirective",
@@ -2048,7 +2048,7 @@
     "src": "0:2362:6"
   },
   "legacyAST": {
-    "absolutePath": "/Users/garmore/Clients/tokenplay/tokenplay-service/truffle/contracts/ownership/Whitelist.sol",
+    "absolutePath": "/Users/garmore/Clients/turboplay/turboplay-service/truffle/contracts/ownership/Whitelist.sol",
     "exportedSymbols": {
       "Whitelist": [
         1132
@@ -2069,7 +2069,7 @@
         "src": "0:24:6"
       },
       {
-        "absolutePath": "/Users/garmore/Clients/tokenplay/tokenplay-service/truffle/contracts/ownership/Ownable.sol",
+        "absolutePath": "/Users/garmore/Clients/turboplay/turboplay-service/truffle/contracts/ownership/Ownable.sol",
         "file": "./Ownable.sol",
         "id": 977,
         "nodeType": "ImportDirective",
